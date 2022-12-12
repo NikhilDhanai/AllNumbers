@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+        <meta name="description" content="A Free Online Calculator, Quick and Easy, and Full Screen!, Binary Calculator , Binary number">
+        <meta name="keywords" content="Calculator, Online Calculator, Free Online Calculator, Binary Calculator, Binary Numbers, Number System , Binary to decimal convertor, binary to hexadecimal convertor">
+        <title>A1-Calculator All in one Calculator Number System</title>
+        <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMTNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv8AAAAAAAAAAAAAAADEzU7/AAAAAAAAAADEzU7/AAAAAAAAAADEzU7/AAAAAAAAAADEzU7/AAAAAAAAAADEzU7/AAAAAAAAAAAAAAAAxM1O/wAAAAAAAAAAxM1O/wAAAAAAAAAAxM1O/wAAAAAAAAAAxM1O/wAAAAAAAAAAxM1O/wAAAAAAAAAAAAAAAMTNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv8AAAAAAAAAAMTNTv8AAAAAAAAAAAAAAADEzU7/AAAAAAAAAADEzU7/AAAAAAAAAADEzU7/AAAAAAAAAADEzU7/AAAAAAAAAADEzU7/AAAAAAAAAAAAAAAAxM1O/wAAAAAAAAAAxM1O/wAAAAAAAAAAxM1O/wAAAAAAAAAAxM1O/wAAAAAAAAAAxM1O/wAAAAAAAAAAAAAAAMTNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv8AAAAAAAAAAAAAAADEzU7/AAAAAAAAAADEzU7/AAAAAAAAAADEzU7/AAAAAAAAAADEzU7/AAAAAAAAAADEzU7/AAAAAAAAAAAAAAAAxM1O/wAAAAAAAAAAxM1O/wAAAAAAAAAAxM1O/wAAAAAAAAAAxM1O/wAAAAAAAAAAxM1O/wAAAAAAAAAAAAAAAMTNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv8AAAAAAAAAAAAAAADEzU7/SsOLDgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAErDiw/EzU7/AAAAAAAAAAAAAAAAxM1O/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxM1O/wAAAAAAAAAAAAAAAMTNTv9Kw4sPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASsOLD8TNTv8AAAAAAAAAAAAAAADEzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv/EzU7/xM1O/8TNTv/EzU7/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAIADAAC22wAAttsAAIAbAAC22wAAttsAAIADAAC22wAAttsAAIADAAC/+wAAv/sAAL/7AACAAwAA//8AAA==" rel="icon" type="image/x-icon" />
+        <link rel="stylesheet" href="allcalcStyle.css">
+        <script type="text/javascript" src="allmulCalc.js"></script>
+        <script async src="https://cse.google.com/cse.js?cx=c4cc733d54fbf4b3b">
+        </script>
+    </head>
+    <body>
+            <header id="welcome">
+                <h1>A1 Calculator</h1>
+            </header>
+            <div class="main">
+                <div class="gcse-search"></div>
+                <script src="https://cse.google.com/cse.js?cx=c4cc733d54fbf4b3b">
+                </script>
+                <div  class="center">
+                <div class="container">
+                    <div class="div1">
+                        <div class="div11">
+                            <h1>ALL IN ONE <br> CALCULATOR</h1>
+                            <h3>Calculate Without Limits.....</h3>
+                        </div>
+                        <div class="div12">
+                            <div class="container-w">
+                                <form id="input">
+                                  <input type="text" id="city" placeholder="Enter City Name">
+                                  <input type="submit" id="BC" value="Get Updates">
+                                </form>
+                                <div id="weatherContainer">
+                                  <marquee id="cityName">Dehradun</marquee>
+                                  <span id="temp">33°C</span>
+                                  <span id="main">Cloudy</span>
+                                  <marquee id="discription">few clouds</marquee>
+                                  <img id="image" src="https://openweathermap.org/img/wn/02n@2x.png">
+                                </div>
+                              </div>
+                              <script>
+                                const input = document.querySelector("#input");
+                        const city = document.querySelector("#city");
+                        
+                        const cityName = document.querySelector("#cityName");
+                        const Temp = document.querySelector("#temp");
+                        const main = document.querySelector("#main");
+                        const discription = document.querySelector("#discription");
+                        const image = document.querySelector("#image");
+                        
+                        input.onsubmit = (e) => {
+                          e.preventDefault();
+                          weatherUpdate(city.value);
+                          city.value = "";
+                        };
+                        
+                        weatherUpdate = (city) => {
+                          const xhr = new XMLHttpRequest();
+                          xhr.open(
+                            "GET",
+                            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=75b38a35906a8b33ef27b25c31b91fec`);
+                          // in place of appid enter your open weather API Key
+                          // You can create it for free
+                          // https://home.openweathermap.org/users/sign_up
+                        
+                          xhr.send();
+                          xhr.onload = () => {
+                            if (xhr.status === 404) {
+                              alert("Place not found");
+                            } else {
+                              var data = JSON.parse(xhr.response);
+                              cityName.innerHTML = data.name;
+                              Temp.innerHTML = `${Math.round(data.main.temp - 273.15)}°C`;
+                              main.innerHTML = data.weather[0].main;
+                              discription.innerHTML = data.weather[0].description;
+                              image.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                            }
+                          };
+                        };
+                        
+                        weatherUpdate("dehradun");
+                            </script>
+
+                        </div>
+
+                    </div>
+                    <div class="div2">
+                            <div class="mainC">
+                                <div class="fbC">
+                    
+                             <div class="buttonC">
+                                <button type="button" id="bb" onclick="showDiv('b')">Binary</button>
+                                <button type="button" id="db" onclick="showDiv('d')">Decimal</button>
+                                <button type="button" id="hb" onclick="showDiv('h')">Hexadecimal</button>
+                                <button type="button" id="ob" onclick="showDiv('o')">Octal</button>
+                                <div class="divsize" id="bdiv">
+                                    <button type="button" onclick="btnClick('0')">0</button>
+                                    <button type="button" onclick="btnClick('1')">1</button>
+                                    <button type="button" onclick="btnClick('<<')" title="Left Shift"><<</button>
+                                    <button type="button" onclick="btnClick('>>')" title="Right Shift">>></button>
+                                </div>
+                                <div class="divsize" id="ddiv">
+                                    <button type="button" onclick="btnClick('0')">0</button>
+                                    <button type="button" onclick="btnClick('1')">1</button>
+                                    <button type="button" onclick="btnClick('2')">2</button>
+                                    <button type="button" onclick="btnClick('3')">3</button>
+                                    <button type="button" onclick="btnClick('4')">4</button>
+                                    <button type="button" onclick="btnClick('5')">5</button>
+                                    <button type="button" onclick="btnClick('6')">6</button>
+                                    <button type="button" onclick="btnClick('7')">7</button>
+                                    <button type="button" onclick="btnClick('8')">8</button>
+                                    <button type="button" onclick="btnClick('9')">9</button>
+                                </div>
+                                <div class="divsize" id="hdiv">
+                                    <button type="button" onclick="btnClick('0')">0</button>
+                                    <button type="button" onclick="btnClick('1')">1</button>
+                                    <button type="button" onclick="btnClick('2')">2</button>
+                                    <button type="button" onclick="btnClick('3')">3</button>
+                                    <button type="button" onclick="btnClick('4')">4</button>
+                                    <button type="button" onclick="btnClick('5')">5</button>
+                                    <button type="button" onclick="btnClick('6')">6</button>
+                                    <button type="button" onclick="btnClick('7')">7</button>
+                                    <button type="button" onclick="btnClick('8')">8</button>
+                                    <button type="button" onclick="btnClick('9')">9</button>
+                                    <button type="button" onclick="btnClick('A')">A</button>
+                                    <button type="button" onclick="btnClick('B')">B</button>
+                                    <button type="button" onclick="btnClick('C')">C</button>
+                                    <button type="button" onclick="btnClick('D')">D</button>
+                                    <button type="button" onclick="btnClick('E')">E</button>
+                                    <button type="button" onclick="btnClick('F')">F</button>
+                                </div>
+                                <div class="divsize" id="odiv">
+                                    <button type="button" onclick="btnClick('0')">0</button>
+                                    <button type="button" onclick="btnClick('1')">1</button>
+                                    <button type="button" onclick="btnClick('2')">2</button>
+                                    <button type="button" onclick="btnClick('3')">3</button>
+                                    <button type="button" onclick="btnClick('4')">4</button>
+                                    <button type="button" onclick="btnClick('5')">5</button>
+                                    <button type="button" onclick="btnClick('6')">6</button>
+                                    <button type="button" onclick="btnClick('7')">7</button>
+                                </div>
+                            </div>
+                                <div class="opertionsButton">
+                                    <button type="button" onclick="btnClick('+')">+</button>
+                                    <button type="button" onclick="btnClick('-')">-</button>
+                                    <button type="button" onclick="btnClick('*')">X</button>
+                                    <button type="button" onclick="btnClick('/')">/</button>
+                                    <button type="button" onclick="btnClick('DEL')">DEL</button>
+                                    <button  type="button" onclick="btnClick('Cl')" title="Clear Screen">C</button>
+                                    <button type="button" onclick="result()">=</button>
+                                </div>
+                            
+                    
+                             </div>
+                             <div class="screens">
+                                <label><h3>Binary</h3><input type="text" id="binary" placeholder="Enter"></label>
+                                <label><h3>Decimal</h3><input type="text" id="decimal" placeholder="Enter"></label>
+                                <label><h3>HexaDecimal</h3><input type="text" id="hexa" placeholder="Enter"></label>
+                                <label><h3>Octal</h3><input type="text" id="octal" placeholder="Enter"></label>
+                    
+                             </div>
+                           </div>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+    </body>
+</html>
